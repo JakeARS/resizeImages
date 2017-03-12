@@ -52,6 +52,8 @@ namespace Image
                     //int A = sourceImage.GetPixel(i, j).R;
                     //A = sourceImage.GetPixel(i, j).G;
                     //A = sourceImage.GetPixel(i, j).B;
+
+                    //рассчет цветов должен быть на основе матрицы размерности k x k
                     int A = (sourceImage.GetPixel(i, j).A + sourceImage.GetPixel(i - 1, j).A +
                              sourceImage.GetPixel(i, j - 1).A +
                              sourceImage.GetPixel(i - 1, j - 1).A)/4;
@@ -75,7 +77,7 @@ namespace Image
                 if (i < koef*(width / 100))
                 {
                     Console.Clear();
-                    Console.Write(prog + "%");
+                    Console.Write(prog + "%"); //проценты отображаются криво для некоторых изображений, надо править
                 }
                 else
                 {
