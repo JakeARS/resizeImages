@@ -17,7 +17,7 @@ namespace Image
             int width = sourceImage.Width;
             int heigth = sourceImage.Height;
 
-            int k = 2;
+            int k = 8;
 
             while (width % k != 0 || heigth % k != 0)
             {
@@ -44,31 +44,44 @@ namespace Image
             int step = width/100;
             int prog = 0;
             int koef = 1;
-            
-            for (int i = 1; i < width; i += k)
+            int A = 0;
+            int R = 0;
+            int G = 0;
+            int B = 0;
+
+            for (int i = 0; i < width; i += k)
             {
-                for (int j = 1; j < heigth; j += k)
+                for (int j = 0; j < heigth; j += k)
                 {
                     //int A = sourceImage.GetPixel(i, j).R;
                     //A = sourceImage.GetPixel(i, j).G;
                     //A = sourceImage.GetPixel(i, j).B;
 
                     //рассчет цветов должен быть на основе матрицы размерности k x k
-                    int A = (sourceImage.GetPixel(i, j).A + sourceImage.GetPixel(i - 1, j).A +
-                             sourceImage.GetPixel(i, j - 1).A +
-                             sourceImage.GetPixel(i - 1, j - 1).A)/4;
-                    int R = (sourceImage.GetPixel(i, j).R + sourceImage.GetPixel(i - 1, j).R +
-                             sourceImage.GetPixel(i, j - 1).R +
-                             sourceImage.GetPixel(i - 1, j - 1).R)/4;
-                    int G = (sourceImage.GetPixel(i, j).G + sourceImage.GetPixel(i - 1, j).G +
-                             sourceImage.GetPixel(i, j - 1).G +
-                             sourceImage.GetPixel(i - 1, j - 1).G)/4;
-                    int B = (sourceImage.GetPixel(i, j).B + sourceImage.GetPixel(i - 1, j).B +
-                             sourceImage.GetPixel(i, j - 1).B +
-                             sourceImage.GetPixel(i - 1, j - 1).B)/4;
+                    for (int x = i; x < i + k; x++)
+                    {
+                        for (int y = j; y < j + k; y++)
+                        {
+                            A = A + sourceImage.GetPixel(x, y).A;
+                            R = R + sourceImage.GetPixel(x, y).R;
+                            G = G + sourceImage.GetPixel(x, y).G;
+                            B = B + sourceImage.GetPixel(x, y).B;
+                        }
+                    }
+
+                    A = A/(k*k);
+                    R = R/(k*k);
+                    G = G/(k*k);
+                    B = B/(k*k);
+
                     Color myColor = Color.FromArgb(A, R, G, B);
 
-                    processedImage.SetPixel((i - 1)/k, (j - 1)/k, myColor);
+                    processedImage.SetPixel(i / k, j / k, myColor);
+
+                    A = 0;
+                    R = 0;
+                    G = 0;
+                    B = 0;
                     //A = processedImage.GetPixel((i - 1)/3, (j - 1)/3).R;
                     //  processedImage.SetPixel(i - 1, j - 1,
                     //       Color(sourceImage.GetPixel(i, j) + sourceImage.GetPixel(i - 1, j) + sourceImage.GetPixel(i, j - 1) +
