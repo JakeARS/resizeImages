@@ -1,0 +1,6 @@
+D:\Programs\Projects\Image\Image\bin\Debug\Image.exe.config
+D:\Programs\Projects\Image\Image\bin\Debug\Image.exe
+D:\Programs\Projects\Image\Image\bin\Debug\Image.pdb
+D:\Programs\Projects\Image\Image\obj\Debug\Image.csprojResolveAssemblyReference.cache
+D:\Programs\Projects\Image\Image\obj\Debug\Image.exe
+D:\Programs\Projects\Image\Image\obj\Debug\Image.pdb
